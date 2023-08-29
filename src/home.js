@@ -154,9 +154,9 @@ export const ImageUpload = () => {
     if (image) {
       let formData = new FormData();
       formData.append("file", selectedFile);
-      let res = await axios({
+      let res = await axios.post({
         method: "post",
-        url: process.env.REACT_APP_API_URL,
+        url:"https://us-central1-potatodisease-397322.cloudfunctions.net/predict",
         data: formData,
       });
       if (res.status === 200) {
