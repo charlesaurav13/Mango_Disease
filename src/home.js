@@ -12,7 +12,7 @@ import image from "./bg.png";
 import { DropzoneArea } from 'material-ui-dropzone';
 import { common } from '@material-ui/core/colors';
 import Clear from '@material-ui/icons/Clear';
-
+import axios from "axios"
 
 
 
@@ -25,7 +25,7 @@ const ColorButton = withStyles((theme) => ({
     },
   },
 }))(Button);
-const axios = require("axios").default;
+
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -152,17 +152,18 @@ export const ImageUpload = () => {
 
   const sendFile = async () => {
     if (image) {
-      let formData = new FormData();
+      try{
+        let formData = new FormData();
       formData.append("file", selectedFile);
-      let res = await axios.post({
-        method: "post",
-        url:"https://us-central1-potatodisease-397322.cloudfunctions.net/predict",
-        data: formData,
-      });
+      let res = await axios.post(process.env.REACT_APP_API_URL,formData);
       if (res.status === 200) {
         setData(res.data);
       }
       setIsloading(false);
+      }
+      catch(e){
+        console.log(e)
+      } 
     }
   }
 
