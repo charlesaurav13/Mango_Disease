@@ -212,7 +212,7 @@ export const ImageUpload = () => {
       <AppBar position="static" className={classes.appbar}>
         <Toolbar>
           <Typography className={classes.title} variant="h6" noWrap>
-            Mango Disease Classification
+            Mango Disease Prediction
           </Typography>
           <div className={classes.grow} />
 
@@ -234,7 +234,7 @@ export const ImageUpload = () => {
                   className={classes.media}
                   image={preview}
                   component="image"
-                  title="Contemplative Reptile"
+                  title={data && data.class}
                 />
               </CardActionArea>
               }
